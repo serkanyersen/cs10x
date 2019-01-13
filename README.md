@@ -1,7 +1,7 @@
-## CS Playground
+# CS Playground
 This is a playground to test some code, datastructures and algorithms.
 
-# How to use
+## How to use
 install dependencies first
 
 ```
