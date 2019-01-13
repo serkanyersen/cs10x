@@ -4,52 +4,52 @@ export class Stack {
   /**
    * @param {any[]|undefined} init
    */
-  constructor(init = []) {
+  constructor (init = []) {
     /** @type {any[]} */
-    this.__stack = init;
+    this.__stack = init
   }
 
   /**
    * Make stack iterable
    */
-  *[Symbol.iterator]() {
-    for (let i=0; i < this.__stack.length; i++) {
-      yield [i, this.__stack[i]];
+  * [Symbol.iterator] () {
+    for (let i = 0; i < this.__stack.length; i++) {
+      yield [i, this.__stack[i]]
     }
   }
 
   get size () {
-    return this.__stack.length;
+    return this.__stack.length
   }
 
   /**
    * @param {any} val
    */
   push (val) {
-    this.__stack.push(val);
+    this.__stack.push(val)
   }
 
   pop () {
-    return this.__stack.pop();
+    return this.__stack.pop()
   }
 
   peek () {
-    return this.__stack[this.__stack.length - 1];
+    return this.__stack[this.__stack.length - 1]
   }
 
   empty () {
-    return this.__stack.length === 0;
+    return this.__stack.length === 0
   }
 
   clear () {
-    this.__stack.length = 0;
+    this.__stack.length = 0
   }
 
   /**
    * @param {any} q
    */
   search (q) {
-    return this.__stack.includes(q);
+    return this.__stack.includes(q)
   }
 }
 
