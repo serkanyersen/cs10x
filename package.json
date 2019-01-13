@@ -5,5 +5,8 @@
   "repository": "https://github.com/serkanyersen/cs10x",
   "author": "serkan yersen",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "eslint": "^5.12.0"
+  }
 }
