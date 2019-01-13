@@ -1,0 +1,9 @@
+{
+  "name": "cs10x",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/serkanyersen/cs10x",
+  "author": "serkan yersen",
+  "license": "MIT",
+  "private": true
+}
