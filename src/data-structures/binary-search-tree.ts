@@ -1,9 +1,9 @@
 type Maybe<T> = T | null
 
-export class BinaryNode<T> {
+export class BinaryTree<T> {
   value: T;
-  left: Maybe<BinaryNode<T>>;
-  right: Maybe<BinaryNode<T>>;
+  left: Maybe<BinaryTree<T>>;
+  right: Maybe<BinaryTree<T>>;
 
   constructor (value: T) {
     this.value = value
@@ -16,13 +16,13 @@ export class BinaryNode<T> {
       if (this.right !== null) {
         this.right.insert(value)
       } else {
-        this.right = new BinaryNode(value)
+        this.right = new BinaryTree(value)
       }
     } else {
       if (this.left !== null) {
         this.left.insert(value)
       } else {
-        this.left = new BinaryNode(value)
+        this.left = new BinaryTree(value)
       }
     }
   }

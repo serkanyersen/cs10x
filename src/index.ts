@@ -2,7 +2,7 @@ type Maybe<T> = T | null
 
 // Write your example code
 import { Trie } from './data-structures/trie'
-import { BinaryNode } from './data-structures/binary-search-tree';
+import { BinaryTree } from './data-structures/binary-search-tree';
 import { Stack } from './data-structures/stack';
 import { Queue } from './data-structures/queue';
 import { LinkedList } from './data-structures/linked-list';
@@ -18,7 +18,7 @@ t.insert('seyhun')
 
 console.log('find ser*: ', t.find('ser'))
 
-const head = new BinaryNode<number>(2);
+const head = new BinaryTree<number>(2);
 head.insert(4)
 head.insert(8)
 head.insert(6)
@@ -28,7 +28,7 @@ head.insert(11)
 head.insert(5)
 
 const sorted: number[] = [];
-function inOrder<T>(node: Maybe<BinaryNode<T>>, visit: (node: BinaryNode<T>) => void) {
+function inOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTree<T>) => void) {
   if (node == null) return null;
 
   inOrder(node.left, visit);
