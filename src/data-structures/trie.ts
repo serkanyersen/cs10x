@@ -1,18 +1,15 @@
-// @ts-check
+type Maybe<T> = T | null
+
 export class TrieNode {
-  /**
-   * Individual Node of the Trie
-   * @param {string} key
-   * @param {TrieNode|null} parent
-   */
-  constructor (key, parent = null) {
-    /** @type {string} */
+  value: any;
+  parent: Maybe<TrieNode>;
+  children: Map<string, TrieNode>;
+  end: boolean;
+
+  constructor (key: Maybe<string>, parent: TrieNode | null = null) {
     this.value = key
-    /** @type {TrieNode} */
     this.parent = parent
-    /** @type {Map<string, TrieNode>} */
     this.children = new Map()
-    /** @type {boolean} */
     this.end = false
   }
 
@@ -20,50 +17,42 @@ export class TrieNode {
    * Get the whole word
    */
   getWord () {
-    /** @type {string[]} */
     const word = []
-    /** @type {TrieNode} */
-    let node = this
+    let node: TrieNode | null = this
 
     while (node !== null) {
       word.unshift(node.value)
       node = node.parent
     }
-
     return word.join('')
   }
 }
 
 export class Trie {
+  root: TrieNode;
   constructor () {
     this.root = new TrieNode(null)
   }
 
-  /**
-   * @param {string} word
-   */
-  insert (word) {
+  insert (word: string) {
     let node = this.root
 
     for (let c of word.toLocaleLowerCase()) {
       if (!node.children.has(c)) {
         node.children.set(c, new TrieNode(c, node))
       }
-      node = node.children.get(c)
+      node = node.children.get(c) as TrieNode;
     }
 
     node.end = true
   }
 
-  /**
-   * @param {string} word
-   */
-  contains (word) {
+  contains (word: string) {
     let node = this.root
 
     for (let c of word) {
       if (node.children.has(c)) {
-        node = node.children.get(c)
+        node = node.children.get(c) as TrieNode;
       } else {
         return false
       }
@@ -72,17 +61,13 @@ export class Trie {
     return node.end
   }
 
-  /**
-   * @param {string} prefix
-   */
-  find (prefix) {
+  find (prefix: string) {
     let node = this.root
-    /** @type {string[]} */
-    const output = []
+    const output: string[] = []
 
     for (let c of prefix) {
       if (node.children.has(c)) {
-        node = node.children.get(c)
+        node = node.children.get(c) as TrieNode;
       } else {
         return output
       }
@@ -93,11 +78,7 @@ export class Trie {
     return output
   }
 
-  /**
-   * @param {TrieNode} node
-   * @param {string[]} arr
-   */
-  static findAllWords (node, arr) {
+  static findAllWords (node: TrieNode, arr: string[]) {
     // base case, if node is at a word, push to output
     if (node.end) {
       arr.unshift(node.getWord())

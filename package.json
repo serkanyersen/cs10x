@@ -7,11 +7,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "nodemon -q src/esm.js"
+    "dev": "ts-node src"
   },
   "dependencies": {
-    "esm": "^3.0.84",
-    "nodemon": "^1.18.9",
-    "standard": "^12.0.1"
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.4000"
   }
 }

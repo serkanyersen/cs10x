@@ -1,27 +1,33 @@
-export class BTNode {
-  constructor (value) {
+type Maybe<T> = T | null
+
+export class BinaryNode<T> {
+  value: T;
+  left: Maybe<BinaryNode<T>>;
+  right: Maybe<BinaryNode<T>>;
+
+  constructor (value: T) {
     this.value = value
     this.left = null
     this.right = null
   }
 
-  insert (value) {
+  insert (value: T) {
     if (value > this.value) {
       if (this.right !== null) {
         this.right.insert(value)
       } else {
-        this.right = new BTNode(value)
+        this.right = new BinaryNode(value)
       }
     } else {
       if (this.left !== null) {
         this.left.insert(value)
       } else {
-        this.left = new BTNode(value)
+        this.left = new BinaryNode(value)
       }
     }
   }
 
-  find (value) {
+  find (value: T): boolean {
     if (value === this.value) {
       return true
     } else if (value > this.value && this.right !== null) {
