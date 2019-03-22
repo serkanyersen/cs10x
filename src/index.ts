@@ -1,5 +1,3 @@
-type Maybe<T> = T | null
-
 // Write your example code
 import { Trie } from './data-structures/trie'
 import { BinaryTree } from './data-structures/binary-search-tree';
@@ -7,6 +5,7 @@ import { Stack } from './data-structures/stack';
 import { Queue } from './data-structures/queue';
 import { LinkedList } from './data-structures/linked-list';
 import { MinHeap } from './data-structures/min-heap';
+import { inOrder, preOrder, levelOrder } from './algorithms/traversal';
 
 console.log('\n' + '-'.repeat(80) + '\n') // separate each execution
 
@@ -18,29 +17,43 @@ t.insert('seyhun')
 
 console.log('find ser*: ', t.find('ser'))
 
-const head = new BinaryTree<number>(2);
-head.insert(4)
+const head = new BinaryTree<number>(10);
 head.insert(8)
-head.insert(6)
+head.insert(22)
+head.insert(7)
 head.insert(9)
-head.insert(5)
-head.insert(11)
-head.insert(5)
+head.insert(19)
+head.insert(24)
 
 const sorted: number[] = [];
-function inOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTree<T>) => void) {
-  if (node == null) return null;
-
-  inOrder(node.left, visit);
-  visit(node);
-  inOrder(node.right, visit);
-}
-
 inOrder(head, (node) => {
   sorted.push(node.value);
 })
+console.log('Binary Tree Sorted (in order)', sorted);
 
-console.log('Binary Tree Sorted', sorted);
+const sorted2: number[] = [];
+inOrder(head, (node) => {
+  sorted2.push(node.value);
+})
+console.log('Binary Tree Sorted (out order)', sorted);
+
+const preorder: number[] = [];
+preOrder(head, (node) => {
+  preorder.push(node.value);
+})
+console.log('Pre Order', preorder);
+
+const postorder: number[] = [];
+preOrder(head, (node) => {
+  postorder.push(node.value);
+})
+console.log('Post Order', postorder);
+
+const levelorder: number[] = [];
+levelOrder(head, (node) => {
+  levelorder.push(node.value);
+})
+console.log('Level Order', levelorder);
 
 const stack = new Stack<number>();
 
