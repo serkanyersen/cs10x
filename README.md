@@ -1,5 +1,5 @@
 # CS Playground
-This is a playground to test some code, datastructures and algorithms.
+This is a playground to test some code, data structures and algorithms.
 
 ## How to use
 install dependencies first
@@ -18,4 +18,4 @@ yarn dev
 
 It will run your code and automatically refresh whenever you make a change.
 
-Playground is `main.js`
+Playground is `src/index.ts`
