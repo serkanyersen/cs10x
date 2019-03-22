@@ -5,7 +5,7 @@ import { Stack } from './data-structures/stack';
 import { Queue } from './data-structures/queue';
 import { LinkedList } from './data-structures/linked-list';
 import { MinHeap } from './data-structures/min-heap';
-import { inOrder, preOrder, levelOrder } from './algorithms/traversal';
+import { inOrder, preOrder, levelOrder, postOrder, outOrder } from './algorithms/traversal';
 
 console.log('\n' + '-'.repeat(80) + '\n') // separate each execution
 
@@ -25,6 +25,14 @@ head.insert(9)
 head.insert(19)
 head.insert(24)
 
+console.log(`
+       10
+      /   \\
+     8     22
+    / \\   /  \\
+   7   9  19  24
+`)
+
 const sorted: number[] = [];
 inOrder(head, (node) => {
   sorted.push(node.value);
@@ -32,10 +40,10 @@ inOrder(head, (node) => {
 console.log('Binary Tree Sorted (in order)', sorted);
 
 const sorted2: number[] = [];
-inOrder(head, (node) => {
+outOrder(head, (node) => {
   sorted2.push(node.value);
 })
-console.log('Binary Tree Sorted (out order)', sorted);
+console.log('Binary Tree Sorted (out order)', sorted2);
 
 const preorder: number[] = [];
 preOrder(head, (node) => {
@@ -44,7 +52,7 @@ preOrder(head, (node) => {
 console.log('Pre Order', preorder);
 
 const postorder: number[] = [];
-preOrder(head, (node) => {
+postOrder(head, (node) => {
   postorder.push(node.value);
 })
 console.log('Post Order', postorder);
