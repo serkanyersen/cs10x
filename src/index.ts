@@ -6,8 +6,9 @@ import { Queue } from './data-structures/queue';
 import { LinkedList } from './data-structures/linked-list';
 import { MinHeap } from './data-structures/min-heap';
 import { inOrder, preOrder, levelOrder, postOrder, outOrder } from './algorithms/traversal';
+import { label } from './utils';
 
-console.log('\n' + '-'.repeat(80) + '\n') // separate each execution
+label('Trie')
 
 const t = new Trie()
 
@@ -17,6 +18,7 @@ t.insert('seyhun')
 
 console.log('find ser*: ', t.find('ser'))
 
+label('Binary Tree');
 const head = new BinaryTree<number>(10);
 head.insert(8)
 head.insert(22)
@@ -63,6 +65,7 @@ levelOrder(head, (node) => {
 })
 console.log('Level Order', levelorder);
 
+label('Stack')
 const stack = new Stack<number>();
 
 stack.push(5)
@@ -71,6 +74,7 @@ stack.push(7)
 console.log(`stack ${stack}`)
 console.log('peek', stack.peek())
 
+label('Queue')
 const q = new Queue<number>();
 
 q.enqueue(5)
@@ -79,6 +83,7 @@ q.enqueue(7)
 console.log(`queue ${q}`)
 console.log('peek', q.peek())
 
+label('Linked List')
 const list = new LinkedList<number>();
 
 list.append(5)
@@ -91,6 +96,7 @@ for (let [i, value] of list) {
   console.log('%s => %s', i, value);
 }
 
+label('Min Heap')
 const min = new MinHeap();
 
 min.add(8);

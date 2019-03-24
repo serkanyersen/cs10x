@@ -1,4 +1,4 @@
-type Maybe<T> = T | null
+import { Maybe } from "../utils";
 
 export class BinaryTree<T> {
   value: T;
