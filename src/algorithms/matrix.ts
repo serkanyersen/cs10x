@@ -1,5 +1,6 @@
 import { label } from "../utils";
 import { Matrix } from "../data-structures/matrix";
+import chalk from "chalk";
 const write = (m: string) => process.stdout.write(m);
 console.time('Duration');
 
@@ -17,20 +18,10 @@ const base = new Matrix([
   [90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
 ]);
 
-const dominoes = new Matrix([
-  ['🁣', '🁤', '🁥', '🁦', '🁧', '🁨', '🁩'],
-  ['🁪', '🁫', '🁬', '🁭', '🁮', '🁯', '🁰'],
-  ['🁱', '🁲', '🁳', '🁴', '🁵', '🁶', '🁷'],
-  ['🁸', '🁹', '🁺', '🁻', '🁼', '🁽', '🁾'],
-  ['🁿', '🂀', '🂁', '🂂', '🂃', '🂄', '🂅'],
-  ['🂆', '🂇', '🂈', '🂉', '🂊', '🂋', '🂌'],
-  ['🂍', '🂎', '🂏', '🂐', '🂑', '🂒', '🂓'],
-]);
-
 label('Print')
 const print = (matrix: Matrix<any>) => {
-  for (let { c, value } of matrix) {
-    write(` ${value < 10 ? ' ' : ''}${value}`);
+  for (let { c, r, value } of matrix.unroll()) {
+    write(chalk[r % 2 == 0 ? 'white' : 'gray'](` ${value < 10 ? ' ' : ''}${value}`));
 
     if (matrix.size.c - 1 === c) {
       console.log('')
@@ -43,48 +34,53 @@ label('Diagonal Traversal')
 const diagonal = (matrix: Matrix) => {
   const size = matrix.size;
 
-  const NE = (x: number, y: number) => {
+  const isValid = (x: number, y: number) => {
     x = x+1;
     y = y-1;
 
-    if (x < 0 || y < 0) return [-1];
-    if (x > size.c-1 || y > size.r-1) return [-1];
+    if (x < 0 || y < 0) return false;
+    if (x > size.c-1 || y > size.r-1) return false;
 
-    return [ x, y ];
+    return true;
   }
 
   for (let r=0; r < size.r; r++) {
     let cellY = r;
     let cellX = 0;
-
-    while (cellX !== -1) {
-      write(matrix[cellY][cellX] + ' ');
-      [cellX, cellY] = NE(cellX, cellY);
+    const row = [];
+    while (isValid(cellX, cellY)) {
+      row.push(matrix[cellY--][cellX++]);
     }
-    console.log()
+    console.log(row.join(' '))
   }
 
   for (let c=1; c < size.c; c++) {
-    let cellY = size.r-1;
+    let cellY = size.r - 1;
     let cellX = c;
-
-    while (cellX !== -1) {
-      write(matrix[cellY][cellX] + ' ');
-      [cellX, cellY] = NE(cellX, cellY);
+    const row = [];
+    while (isValid(cellX, cellY)) {
+      row.push(matrix[cellY--][cellX++]);
     }
-    console.log()
+    console.log(row.join(' '))
   }
 }
 
 diagonal(base);
 
-label('flip')
+label('transpose')
 print(base.transpose())
-
-label('dominoes')
-print(dominoes)
-
-
 
 label('END')
 console.timeEnd('Duration');
+
+
+const seyhun = new Matrix([
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8]
+]);
+
+const a = [1,2,3];
+
+label('Test')
+

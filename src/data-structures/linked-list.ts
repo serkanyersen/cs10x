@@ -1,6 +1,6 @@
 import { Maybe } from "../utils";
 
-class LinkedNode<T> {
+export class LinkedNode<T> {
 
   value: T;
   next: Maybe<LinkedNode<T>>;

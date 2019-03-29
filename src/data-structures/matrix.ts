@@ -1,5 +1,4 @@
-
-export class Matrix<T=number> extends Array {
+export class Matrix<T=number> extends Array<Array<T>> {
   constructor(data: T[][] = []) {
     super();
 
@@ -13,9 +12,9 @@ export class Matrix<T=number> extends Array {
   }
 
   transpose () {
-    const newMatrix = new Matrix();
+    const newMatrix = new Matrix<T>();
 
-    for (let { c, value } of this) {
+    for (let { c, value } of this.unroll()) {
       if (newMatrix[c] === undefined) {
           newMatrix[c] = [];
         }
@@ -33,10 +32,10 @@ export class Matrix<T=number> extends Array {
     }
   }
 
-  *[Symbol.iterator]() {
+  *unroll() {
     for (let r = 0; r < this.length; r++) {
       for (let c = 0; c < this[r].length; c++) {
-        yield { c, r, value: this[r][c] as T };
+        yield { c, r, value: this[r][c] };
       }
     }
   }
