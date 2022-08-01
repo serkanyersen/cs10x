@@ -1,35 +1,35 @@
-export class Matrix<T=number> extends Array<Array<T>> {
+export class Matrix<T = number> extends Array<Array<T>> {
   constructor(data: T[][] = []) {
     super();
 
     // Fill given data to matrix;
     for (let r = 0; r < data.length; r++) {
       this[r] = [];
-      for (let c=0; c < data[r].length; c++) {
+      for (let c = 0; c < data[r].length; c++) {
         this[r][c] = data[r][c];
       }
     }
   }
 
-  transpose () {
+  transpose() {
     const newMatrix = new Matrix<T>();
 
-    for (let { c, value } of this.unroll()) {
+    for (const { c, value } of this.unroll()) {
       if (newMatrix[c] === undefined) {
-          newMatrix[c] = [];
-        }
+        newMatrix[c] = [];
+      }
 
-        newMatrix[c].push(value);
+      newMatrix[c].push(value);
     }
 
     return newMatrix;
   }
 
-  get size () {
+  get size() {
     return {
       r: this.length,
       c: this[0].length,
-    }
+    };
   }
 
   *unroll() {

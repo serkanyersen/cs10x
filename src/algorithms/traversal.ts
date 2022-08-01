@@ -1,9 +1,12 @@
-import { BinaryTree } from "../data-structures/binary-search-tree";
-import { Queue } from "../data-structures/queue";
+import { BinaryTree } from "../data-structures/binary-search-tree.ts";
+import { Queue } from "../data-structures/queue.ts";
 
-type Maybe<T> = T | null
+type Maybe<T> = T | null;
 
-export function preOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTree<T>) => void) {
+export function preOrder<T>(
+  node: Maybe<BinaryTree<T>>,
+  visit: (node: BinaryTree<T>) => void,
+) {
   if (node == null) return null;
 
   visit(node);
@@ -11,7 +14,10 @@ export function preOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTree
   preOrder(node.right, visit);
 }
 
-export function inOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTree<T>) => void) {
+export function inOrder<T>(
+  node: Maybe<BinaryTree<T>>,
+  visit: (node: BinaryTree<T>) => void,
+) {
   if (node == null) return null;
 
   inOrder(node.left, visit);
@@ -19,7 +25,10 @@ export function inOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTree<
   inOrder(node.right, visit);
 }
 
-export function outOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTree<T>) => void) {
+export function outOrder<T>(
+  node: Maybe<BinaryTree<T>>,
+  visit: (node: BinaryTree<T>) => void,
+) {
   if (node == null) return null;
 
   outOrder(node.right, visit);
@@ -27,7 +36,10 @@ export function outOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTree
   outOrder(node.left, visit);
 }
 
-export function postOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTree<T>) => void) {
+export function postOrder<T>(
+  node: Maybe<BinaryTree<T>>,
+  visit: (node: BinaryTree<T>) => void,
+) {
   if (node == null) return null;
 
   postOrder(node.left, visit);
@@ -35,9 +47,12 @@ export function postOrder<T>(node: Maybe<BinaryTree<T>>, visit: (node: BinaryTre
   visit(node);
 }
 
-export function levelOrder<T>(root: BinaryTree<T>, visit: (node: BinaryTree<T>) => void) {
+export function levelOrder<T>(
+  root: BinaryTree<T>,
+  visit: (node: BinaryTree<T>) => void,
+) {
   const q = new Queue<BinaryTree<T>>();
-  q.enqueue(root)
+  q.enqueue(root);
   let node: BinaryTree<T>;
 
   while (!q.empty()) {

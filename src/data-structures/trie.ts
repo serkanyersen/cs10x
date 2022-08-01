@@ -1,92 +1,93 @@
-import { Maybe } from "../utils";
+import { Maybe } from "../utils.ts";
 
 export class TrieNode {
-  value: any;
+  value: Maybe<string>;
   parent: Maybe<TrieNode>;
   children: Map<string, TrieNode>;
   end: boolean;
 
-  constructor (key: Maybe<string>, parent: TrieNode | null = null) {
-    this.value = key
-    this.parent = parent
-    this.children = new Map()
-    this.end = false
+  constructor(key: Maybe<string>, parent: TrieNode | null = null) {
+    this.value = key;
+    this.parent = parent;
+    this.children = new Map();
+    this.end = false;
   }
 
   /**
    * Get the whole word
    */
-  getWord () {
-    const word = []
-    let node: TrieNode | null = this
+  getWord() {
+    const word = [];
+    // deno-lint-ignore no-this-alias
+    let node: TrieNode | null = this;
 
     while (node !== null) {
-      word.unshift(node.value)
-      node = node.parent
+      word.unshift(node.value);
+      node = node.parent;
     }
-    return word.join('')
+    return word.join("");
   }
 }
 
 export class Trie {
   root: TrieNode;
-  constructor () {
-    this.root = new TrieNode(null)
+  constructor() {
+    this.root = new TrieNode(null);
   }
 
-  insert (word: string) {
-    let node = this.root
+  insert(word: string) {
+    let node = this.root;
 
-    for (let c of word.toLocaleLowerCase()) {
+    for (const c of word.toLocaleLowerCase()) {
       if (!node.children.has(c)) {
-        node.children.set(c, new TrieNode(c, node))
+        node.children.set(c, new TrieNode(c, node));
       }
       node = node.children.get(c) as TrieNode;
     }
 
-    node.end = true
+    node.end = true;
   }
 
-  contains (word: string) {
-    let node = this.root
+  contains(word: string) {
+    let node = this.root;
 
-    for (let c of word) {
+    for (const c of word) {
       if (node.children.has(c)) {
         node = node.children.get(c) as TrieNode;
       } else {
-        return false
+        return false;
       }
     }
 
-    return node.end
+    return node.end;
   }
 
-  find (prefix: string) {
-    let node = this.root
-    const output: string[] = []
+  find(prefix: string) {
+    let node = this.root;
+    const output: string[] = [];
 
-    for (let c of prefix) {
+    for (const c of prefix) {
       if (node.children.has(c)) {
         node = node.children.get(c) as TrieNode;
       } else {
-        return output
+        return output;
       }
     }
 
-    Trie.findAllWords(node, output)
+    Trie.findAllWords(node, output);
 
-    return output
+    return output;
   }
 
-  static findAllWords (node: TrieNode, arr: string[]) {
+  static findAllWords(node: TrieNode, arr: string[]) {
     // base case, if node is at a word, push to output
     if (node.end) {
-      arr.unshift(node.getWord())
+      arr.unshift(node.getWord());
     }
 
     // iterate through each children, call recursive findAllWords
-    for (let [, child] of node.children) {
-      Trie.findAllWords(child, arr)
+    for (const [, child] of node.children) {
+      Trie.findAllWords(child, arr);
     }
   }
 }

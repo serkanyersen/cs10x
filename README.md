@@ -1,19 +1,19 @@
 # CS Playground
+
 This is a playground to test some code, data structures and algorithms.
 
 ## How to use
-install dependencies first
+
+install Deno
 
 ```
-yarn install
-# or npm install
+Deno run src/index.ts
 ```
 
-then run the dev mode
+or
 
 ```
-yarn dev
-# or npm run dev
+Deno run --watch src/index.ts
 ```
 
 It will run your code and automatically refresh whenever you make a change.

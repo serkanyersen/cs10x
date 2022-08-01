@@ -1,41 +1,41 @@
-import { Maybe } from "../utils";
+import { Maybe } from "../utils.ts";
 
 export class BinaryTree<T> {
   value: T;
   left: Maybe<BinaryTree<T>>;
   right: Maybe<BinaryTree<T>>;
 
-  constructor (value: T) {
-    this.value = value
-    this.left = null
-    this.right = null
+  constructor(value: T) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
   }
 
-  insert (value: T) {
+  insert(value: T) {
     if (value > this.value) {
       if (this.right !== null) {
-        this.right.insert(value)
+        this.right.insert(value);
       } else {
-        this.right = new BinaryTree(value)
+        this.right = new BinaryTree(value);
       }
     } else {
       if (this.left !== null) {
-        this.left.insert(value)
+        this.left.insert(value);
       } else {
-        this.left = new BinaryTree(value)
+        this.left = new BinaryTree(value);
       }
     }
   }
 
-  find (value: T): boolean {
+  find(value: T): boolean {
     if (value === this.value) {
-      return true
+      return true;
     } else if (value > this.value && this.right !== null) {
-      return this.right.find(value)
+      return this.right.find(value);
     } else if (value < this.value && this.left !== null) {
-      return this.left.find(value)
+      return this.left.find(value);
     }
 
-    return false
+    return false;
   }
 }

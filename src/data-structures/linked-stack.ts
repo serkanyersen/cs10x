@@ -1,8 +1,6 @@
-import { Stack } from "./stack";
-import { LinkedList, LinkedNode } from "./linked-list";
-import { Maybe } from "../utils";
+import { LinkedList, LinkedNode } from "./linked-list.ts";
 
-class LinkedStack<T> {
+export class LinkedStack<T> {
   private list = new LinkedList();
   private tail = this.list.head;
 
@@ -10,15 +8,15 @@ class LinkedStack<T> {
 
   constructor() {}
 
-  * [Symbol.iterator] () {
-    yield
+  *[Symbol.iterator]() {
+    yield;
   }
 
-  get size () {
+  get size() {
     return this._size;
   }
 
-  push (val: T) {
+  push(val: T) {
     if (this.tail === null) {
       this.list.append(val);
       if (this.list.head !== null) {
@@ -32,31 +30,17 @@ class LinkedStack<T> {
     this._size++;
   }
 
-  pop () {
+  pop() {}
 
-  }
+  peek() {}
 
-  peek () {
+  empty() {}
 
-  }
+  clear() {}
 
-  empty () {
+  search() {}
 
-  }
+  toArray() {}
 
-  clear () {
-
-  }
-
-  search (q: T) {
-
-  }
-
-  toArray() {
-
-  }
-
-  toString() {
-
-  }
+  toString() {}
 }

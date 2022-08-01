@@ -1,11 +1,10 @@
-import { Maybe } from "../utils";
+import { Maybe } from "../utils.ts";
 
 export class LinkedNode<T> {
-
   value: T;
   next: Maybe<LinkedNode<T>>;
 
-  constructor (value: T) {
+  constructor(value: T) {
     this.value = value;
     this.next = null;
   }
@@ -15,7 +14,6 @@ export class LinkedList<T> {
   public head: Maybe<LinkedNode<T>> = null;
 
   append(value: T) {
-
     if (this.head === null) {
       this.head = new LinkedNode(value);
       return;
@@ -35,7 +33,7 @@ export class LinkedList<T> {
     this.head = newHead;
   }
 
-  deleteWithValue (value: T) {
+  deleteWithValue(value: T) {
     if (this.head === null) return;
 
     if (this.head.value === value) {
@@ -58,12 +56,12 @@ export class LinkedList<T> {
   /**
    * Make queue iterable
    */
-  * [Symbol.iterator] () {
+  *[Symbol.iterator]() {
     let current = this.head;
     let index = 0;
 
     while (current !== null) {
-      yield [index, current.value]
+      yield [index, current.value];
       index += 1;
       current = current.next;
     }
