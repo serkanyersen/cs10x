@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "dev": "deno run --watch src/index.ts",
+    "dev:matrix": "deno run --watch src/algorithms/matrix.ts",
+    "dev:traverse": "deno run --watch src/algorithms/traverse.ts"
+  }
+}
